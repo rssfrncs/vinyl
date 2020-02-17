@@ -61,6 +61,7 @@ export function Vinyl({
           width: 100%;
           height: 100%;
           transform-origin: 50% 50%;
+          z-index: 1;
         `}
         style={{ transform: r.interpolate(r => `rotate(${r}deg`) }}
       >
@@ -144,6 +145,7 @@ export function Vinyl({
           background-image: url(${url});
           box-shadow: 0 0 1px 0 black;
           border-radius: 1px;
+          z-index: 2;
         `}
         style={{
           transform: interpolate(
