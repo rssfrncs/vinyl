@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/vinyl/static/css/main.4503ab23.chunk.css",
+    "main.js": "/vinyl/static/js/main.f05f93f5.chunk.js",
+    "main.js.map": "/vinyl/static/js/main.f05f93f5.chunk.js.map",
+    "runtime-main.js": "/vinyl/static/js/runtime-main.e0633749.js",
+    "runtime-main.js.map": "/vinyl/static/js/runtime-main.e0633749.js.map",
+    "static/js/2.4d694ef1.chunk.js": "/vinyl/static/js/2.4d694ef1.chunk.js",
+    "static/js/2.4d694ef1.chunk.js.map": "/vinyl/static/js/2.4d694ef1.chunk.js.map",
+    "index.html": "/vinyl/index.html",
+    "precache-manifest.7488f3a72b269eae88d6dd9e66943fd7.js": "/vinyl/precache-manifest.7488f3a72b269eae88d6dd9e66943fd7.js",
+    "service-worker.js": "/vinyl/service-worker.js",
+    "static/css/main.4503ab23.chunk.css.map": "/vinyl/static/css/main.4503ab23.chunk.css.map",
+    "static/js/2.4d694ef1.chunk.js.LICENSE.txt": "/vinyl/static/js/2.4d694ef1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e0633749.js",
+    "static/js/2.4d694ef1.chunk.js",
+    "static/css/main.4503ab23.chunk.css",
+    "static/js/main.f05f93f5.chunk.js"
+  ]
+}
