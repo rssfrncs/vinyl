@@ -46,9 +46,12 @@ function Main() {
       `}
     >
       {data.map(url => (
-        <>
+        <React.Fragment key={url}>
           <Vinyl
-            onClick={name => setActive(name)}
+            onClick={name => {
+              console.log("click", name);
+              setActive(name);
+            }}
             name={url}
             active={active === url}
             url={url}
@@ -58,7 +61,7 @@ function Main() {
               flex: 0 0 10px;
             `}
           />
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

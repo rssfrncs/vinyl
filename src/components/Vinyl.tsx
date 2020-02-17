@@ -15,46 +15,50 @@ export function Vinyl({
   url: string;
   active?: boolean;
 }) {
-  // const scale = scaleLinear()
-  //   .range([0, 360])
-  //   .domain([0, 200]);
+  const width = 200;
+  const scale = scaleLinear()
+    .range([0, 360])
+    .domain([0, width]);
   // const scaleVis = scaleLinear()
   //   .range([1, 0])
   //   .domain([0, 100]);
-  const { r, x, s } = useSpring({
+  const [{ r, x, s }, set] = useSpring(() => ({
     r: active ? 45 : 0,
-    x: active ? -100 : -10,
+    x: active ? -(width / 2) : -10,
     s: active ? -5 : 0
-  });
-  // const bind = useDrag(
-  //   ({ movement: [x], down }) => {
-  //     console.log(x);
-  //     set({
-  //       r: down ? scale(x) : 0,
-  //       x: down ? Math.max(-100, x) : -10,
-  //       o: down ? scaleVis(x) : 1
-  //     });
-  //   },
-  //   {
-  //     axis: "x",
-  //     boundaries: {
-  //       top: 0,
-  //       left: 0,
-  //       right: 200,
-  //       bottom: 0
-  //     }
-  //   }
-  // );
+  }));
+  React.useEffect(
+    () =>
+      void set({
+        r: active ? 45 : 0,
+        x: active ? -(width / 2) : -10,
+        s: active ? -5 : 0
+      }),
+    [active, set]
+  );
+  const bind = useDrag(
+    ({ movement: [x], down }) => {
+      if (!active && x <= -(width / 2)) {
+        onClick(name);
+      }
+      set({
+        r: down ? scale(x) : active ? 45 : 0,
+        x: down ? Math.max(-(width / 2), x) : active ? -(width / 2) : -10
+      });
+    },
+    {
+      axis: "x"
+    }
+  );
   return (
     <div
       onClick={() => void onClick(name)}
       css={css`
-        width: 200px;
-        height: 200px;
+        width: ${width}px;
+        height: ${width}px;
         position: relative;
       `}
-
-      // {...bind()}
+      {...bind()}
     >
       <animated.div
         css={css`
@@ -138,8 +142,8 @@ export function Vinyl({
           position: absolute;
           top: 0;
           left: 0;
-          width: 200px;
-          height: 200px;
+          width: 100%;
+          height: 100%;
           background: #bbb;
           background-size: cover;
           background-image: url(${url});
