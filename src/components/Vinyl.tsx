@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDrag } from "react-use-gesture";
-import { animated, useSpring, interpolate } from "react-spring";
+import { animated, useSpring, interpolate, config } from "react-spring";
 import { scaleLinear } from "d3-scale";
 import { css } from "@emotion/core";
 
@@ -15,35 +15,42 @@ export function Vinyl({
   url: string;
   active?: boolean;
 }) {
+  const vinylOffset = 10;
   const width = 200;
   const scale = scaleLinear()
     .range([0, 360])
     .domain([0, width]);
-  // const scaleVis = scaleLinear()
-  //   .range([1, 0])
-  //   .domain([0, 100]);
+  const activeXDegrees = 45;
+  const activeY = -5;
   const [{ r, x, s }, set] = useSpring(() => ({
-    r: active ? 45 : 0,
-    x: active ? -(width / 2) : -10,
-    s: active ? -5 : 0
+    r: active ? activeXDegrees : 0,
+    x: active ? -(width / 2) : -vinylOffset,
+    s: active ? activeY : 0
   }));
   React.useEffect(
     () =>
       void set({
-        r: active ? 45 : 0,
-        x: active ? -(width / 2) : -10,
-        s: active ? -5 : 0
+        r: active ? activeXDegrees : 0,
+        x: active ? -(width / 2) : -vinylOffset,
+        s: active ? activeY : 0
       }),
     [active, set]
   );
   const bind = useDrag(
     ({ movement: [x], down }) => {
+      console.log(x);
       if (!active && x <= -(width / 2)) {
+        onClick(name);
+      } else if (active && x >= 50) {
         onClick(name);
       }
       set({
-        r: down ? scale(x) : active ? 45 : 0,
-        x: down ? Math.max(-(width / 2), x) : active ? -(width / 2) : -10
+        r: down ? scale(x) : active ? activeXDegrees : 0,
+        x: down
+          ? Math.max(-(width / 2), x)
+          : active
+          ? -(width / 2)
+          : vinylOffset
       });
     },
     {
@@ -71,9 +78,9 @@ export function Vinyl({
       >
         <div
           css={css`
-            margin: 5px;
-            width: calc(100% - 10px);
-            height: calc(100% - 10px);
+            margin: 10px;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
             position: absolute;
             top: 0;
             left: 0;
