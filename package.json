@@ -12,7 +12,7 @@
     "d3-scale": "^3.2.1",
     "emotion-theming": "^10.0.27",
     "fuse.js": "^3.4.6",
-    "immer": "^4.0.1",
+    "immer": "^8.0.1",
     "react": "^16.12.0",
     "react-adaptive-hooks": "^0.0.8",
     "react-app-polyfill": "^1.0.6",
